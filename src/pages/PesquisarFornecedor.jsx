@@ -35,8 +35,8 @@ export default function PesquisarFornecedor() {
   async function handleSubmit(event) {
     event.preventDefault();
     getOneFornecedor(pesquisa).then((res) => {
-      console.log(res);
-      setFornecedor(res.data);
+      console.log(res.data);
+      setFornecedor([res.data]);
     });
   }
 
@@ -57,6 +57,7 @@ export default function PesquisarFornecedor() {
   return (
     <Container>
       <Snackbar
+        variant="filled"
         open={snackBar}
         autoHideDuration={6000}
         onClose={handleSnackBar}
@@ -108,7 +109,7 @@ export default function PesquisarFornecedor() {
             <TableHead>
               <TableRow>
                 <TableCell align="center" colSpan={5} sx={{ fontSize: 18 }}>
-                  Dados
+                  Dados do Fornecedor
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -149,6 +150,35 @@ export default function PesquisarFornecedor() {
                   >
                     <TableCell align="center">Telefone</TableCell>
                     <TableCell align="center">{row.telefone_contato}</TableCell>
+                  </TableRow>
+
+                  <TableRow
+                    key={row.rua}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell align="center">Rua</TableCell>
+                    <TableCell align="center">{row.rua}</TableCell>
+                  </TableRow>
+                  <TableRow
+                    key={row.numero}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell align="center">Número</TableCell>
+                    <TableCell align="center">{row.numero}</TableCell>
+                  </TableRow>
+                  <TableRow
+                    key={row.cep}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell align="center">CEP</TableCell>
+                    <TableCell align="center">{row.cep}</TableCell>
+                  </TableRow>
+                  <TableRow
+                    key={row.complemento}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell align="center">Complemento</TableCell>
+                    <TableCell align="center">{row.complemento}</TableCell>
                   </TableRow>
                 </>
               ))}
